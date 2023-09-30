@@ -4,7 +4,9 @@ const MainLayout = () => {
   return (
     <div className="max-w-[1300px] mx-auto">
       <NavBar></NavBar>
-      <Outlet></Outlet>
+      <div className="py-10">
+        <Outlet></Outlet>
+      </div>
     </div>
   );
 };
