@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import swal from "sweetalert";
+
 const CardDetails = ({ card }) => {
   const { id, image, title, price, description } = card || {};
 
@@ -15,6 +16,7 @@ const CardDetails = ({ card }) => {
       const isExist = donatedItem.find(
         (card) => parseInt(card.id) === parseInt(id)
       );
+
       if (!isExist) {
         donationArray.push(...donatedItem, card);
         localStorage.setItem("donations", JSON.stringify(donationArray));
