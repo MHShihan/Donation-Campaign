@@ -1,25 +1,27 @@
 import PropTypes from "prop-types";
+import swal from "sweetalert";
 const CardDetails = ({ card }) => {
-  const { image, title, price, description } = card || {};
+  const { id, image, title, price, description } = card || {};
 
   const handleAddToDonation = () => {
-    // const myValue = JSON.parse(localStorage.getItem("test"));
-    // console.log(myValue);
-
-    // const setValue = localStorage.setItem(
-    //   "test",
-    //   JSON.stringify([{ name: "Shihan" }, { age: 24 }])
-    // );
-
     const donationArray = [];
-    const donatedItem = JSON.parse(localStorage.getItem("Donations"));
+    const donatedItem = JSON.parse(localStorage.getItem("donations"));
 
     if (!donatedItem) {
       donationArray.push(card);
-      localStorage.setItem("Donations", JSON.stringify(donationArray));
+      localStorage.setItem("donations", JSON.stringify(donationArray));
+      swal("Thank You!", "You have donated successfully!", "success");
     } else {
-      donationArray.push(...donatedItem, card);
-      localStorage.setItem("Donations", JSON.stringify(donationArray));
+      const isExist = donatedItem.find(
+        (card) => parseInt(card.id) === parseInt(id)
+      );
+      if (!isExist) {
+        donationArray.push(...donatedItem, card);
+        localStorage.setItem("donations", JSON.stringify(donationArray));
+        swal("Thank You!", "You have donated successfully!", "success");
+      } else {
+        swal("Sorry!", "You have already donated", "error");
+      }
     }
   };
 
