@@ -6,7 +6,6 @@ const Home = () => {
   const cardData = useLoaderData();
   return (
     <div>
-      <h2>I am from Home!</h2>
       <Banner></Banner>
       <div className="mt-10">
         <CardContainer cardData={cardData}></CardContainer>

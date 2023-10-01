@@ -16,11 +16,11 @@ const Donation = () => {
     }
   }, []);
 
-  const handleRemoveAll = () => {
-    localStorage.clear();
-    setDonations([]);
-    setNotFound("No Data Found");
-  };
+  // const handleRemoveAll = () => {
+  //   localStorage.clear();
+  //   setDonations([]);
+  //   setNotFound("No Data Found");
+  // };
   // console.log(donations);
   // console.log(notFound);
 
@@ -32,13 +32,16 @@ const Donation = () => {
         </p>
       ) : (
         <div>
-          <button
-            onClick={handleRemoveAll}
-            className="block mx-auto bg-[#FF444A] px-4 py-1 rounded-sm 
-            text-white font-semibold mb-10"
-          >
-            Remove All
-          </button>
+          {/* {donations.length > 0 && (
+            <button
+              onClick={handleRemoveAll}
+              className="block mx-auto bg-[#FF444A] px-4 py-1 rounded-sm 
+          text-white font-semibold mb-10"
+            >
+              Remove All
+            </button>
+          )} */}
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
             {isShowAll
               ? donations.map((card) => (
@@ -50,12 +53,14 @@ const Donation = () => {
                     <DonatedItems key={card.id} card={card}></DonatedItems>
                   ))}
           </div>
-          <button
-            onClick={() => setIsShowAll(!isShowAll)}
-            className="bg-[#009444] px-4 py-1 text-white font-semibold rounded-sm block mx-auto mt-10"
-          >
-            {isShowAll ? "Show Less" : "Show More"}
-          </button>
+          {donations.length > 4 && (
+            <button
+              onClick={() => setIsShowAll(!isShowAll)}
+              className="bg-[#009444] px-4 py-1 text-white font-semibold rounded-sm block mx-auto mt-10"
+            >
+              {isShowAll ? "Show Less" : "Show All"}
+            </button>
+          )}
         </div>
       )}
     </div>
